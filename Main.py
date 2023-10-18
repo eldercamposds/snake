@@ -48,10 +48,7 @@ def selecionar_velocidade(tecla):
     elif tecla == pygame.K_LEFT:
         velocidade_x = -tamanho_quadrado
         velocidade_y = 0
-
     return velocidade_x, velocidade_y
-
-
 
 def rodar_jogo():
     fim_jogo = False
@@ -63,10 +60,9 @@ def rodar_jogo():
     velocidade_y = 0
 
     tamanho_cobra = 1
-    pixel = []
+    pixels = []
 
-    comida_x , comida_y = gerar_comida()
-    
+    comida_x , comida_y = gerar_comida()    
 
     while not fim_jogo:
 
@@ -90,24 +86,25 @@ def rodar_jogo():
         y += velocidade_y
 
         # desenhar cobra
-        pixel.append([x, y])
-        if len(pixel) > tamanho_cobra:
-            del pixel[0]
+        pixels.append([x, y])
+        if len(pixels) > tamanho_cobra:
+            del pixels[0]
             
-        for pixel in pixel[:-1]: # verificando se a cobra bateu no proprio corpo
+        for pixel in pixels[:-1]: # verificando se a cobra bateu no proprio corpo
             if pixel == [x, y]:
                 fim_jogo = True
 
-        desenha_cobra(tamanho_quadrado, pixel)
+        desenha_cobra(tamanho_quadrado, pixels)
 
         desenhar_pontuacao(tamanho_cobra - 1)
 
         #atualização da tela
         pygame.display.update()
 
+        # criar nova comida na tela
         if x == comida_x and y == comida_y:
             tamanho_cobra += 1
-            comida_y, comida_x = gerar_comida()
+            comida_x, comida_y = gerar_comida()
 
         relogio.tick(velocidade_atualizacao)
 
