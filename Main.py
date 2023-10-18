@@ -35,6 +35,8 @@ def desenhar_pontuacao(pontuacao):
     texto = fonte.render(f"Pontos: {pontuacao}", False, vermelha)
     tela.blit(texto, [1, 1])
 
+negativo = -tamanho_quadrado
+positivo = tamanho_quadrado
 def selecionar_velocidade(tecla):
     if tecla == pygame.K_DOWN:
         velocidade_x = 0
